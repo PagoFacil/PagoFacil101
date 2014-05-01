@@ -11,6 +11,21 @@ PagoFácil recurring Charges API provides a number of methods in order to regist
 
 Requests can send POST or GET data and depending on which ENDPOINT is being invocated response format vary.
 
+### API Keys
+
+Before getting to down to the code you should get your API Keys which are two sets: one set will work for Tests Environment, and the other one for Production Environment. This was thought this way in order to avoid any confusion on wich environment is being used. This keys are available on your [account manager](https://manager.pagofacil.net).
+
+### API Secret
+
+In order to fulfill request for specific methods API Engine will ask for an *API Secret key**, to get this key ask us at soporte-at-pagofacil-dot-net how to get it.
+
+Methods which require this API Secret Key are:
+- recurring charge cancelation
+- reporting
+
+
+### Environments
+
 There are two different sets of endpoints: **tests** and **production**, and are intended to be used as each name suggests:
 
 ## Tests Environment
@@ -21,20 +36,56 @@ In tests environment all recieved data is only checked to be well formatted and 
 
 According to your needs, you may choose from the following tests endpoints' table,
 
-|ref.|request method|input type|response format|URL|
-|-|--------------|----------|---------------|---|
-|**1**|GET|Serialized String|JSON|**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/index/format/json?|
-|**2**|POST|JSON Object|JSON|**https:**//www.pagofacil.net/st/public/Wsjrecurrentes/|
-|**3**|GET|Serialized String|XML|**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/|
+|method|input |response | URL|
+|----|------------------|---------------|-----------------|
+|GET |Serialized String |JSON |**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/index/format/json?|
+|POST|JSON Object       |JSON |**https:**//www.pagofacil.net/st/public/Wsjrecurrentes/|
+|GET |Serialized String |XML  |**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/|
 
 ### Examples
 
-#### For 1
+#### Request For GET-JSON and GET-XML
 
-##### Request
-``````
+```
+curl "https://www.pagofacil.net/st/public/Wsrrecurrentes/index/format/json?\
+method=transaccion&\
+data%5Bnombre%5D=John&\
+data%5Bapellidos%5D=Doe&\
+data%5BnumeroTarjeta%5D=4111111111111111&\
+data%5Bcvt%5D=222&\
+data%5Bcp%5D=11000&\
+data%5BmesExpiracion%5D=09&\
+data%5BanyoExpiracion%5D=16&\
+data%5Bmonto%5D=800&\
+data%5BidSucursal%5D=a30bb30df93a9468b878a51e70eac065497bdaab&\
+data%5BidUsuario%5D=a2ad03e28952266fb687c249fa6ab45bbb4d7a1d&\
+data%5BIP%5D=200.1.1.1&\
+data%5BidServicio%5D=2&%20\
+data%5Bemail%5D=user@gmail.com&\
+data%5Btelefono%5D=5555555555&\
+data%5Bcelular%5D=5555111111&\
+data%5BcalleyNumero%5D=Amargura%203&\
+data%5Bcolonia%5D=la%20otra%20colonia&\
+data%5Bmunicipio%5D=guadalajara&\
+data%5Bestado%5D=Jalisco&\
+data%5Bpais%5D=Mexico&\
+data%5BidCliente%5D=Contrato789232&\
+data%5BdiaPago%5D=05&\
+data%5BfechaIniCobro%5D=16-09-2013&\
+data%5BhttpUserAgent%5D=Mozilla/5.0%20Windows%20NT%206.0%20Safari/537.36"
+```
+
+Some notes on previous example:
+- note **method=transaccion" as method to invoke
+- particularly opening and closing brackets ("[" and "]") URL Encoded as **%5B** and **%5D** (any semi respected programming language should have an equivalent for URL Encode function)
+- all values for data[foo] should be URL Encoded (see previous point)
+
+#### Request For POST-JSON
+
+Send by POST an object like this
+```
 {
-    "jsonrpc": "2.0", // fixed
+    "jsonrpc": "2.0", // fixed key-value pair
     "method": "transaccion", // method to invoke
     "params": {
         "data": {
@@ -64,14 +115,12 @@ According to your needs, you may choose from the following tests endpoints' tabl
             "httpUserAgent": "Mozilla/5.0 (Windows NT 6.0) Safari/537.36"
         }
     },
-    "id": 1397151272
+    "id": 1397151272 // send a random number, has to be uniqe
 }
-``````
-#### For 2
-##### Request
+```
 
-#### Response for 1 and 2
-```````
+#### JSON Response
+```
 {
   "result": {
     "status": 1, // means OK, charge registered
@@ -144,14 +193,32 @@ According to your needs, you may choose from the following tests endpoints' tabl
   "id": "1397151272",
   "jsonrpc": "2.0"
 }
-```````
-
-#### For 3
+```
 
 ## Production Environment
 
+Production environment is exactly the same as Tests environment.
+
+Once you have developed and tested your application and it works OK in Tests environment and you're ready to migrate it to production environment, do so, just consider these important points:
+
+ - Requests' format **is the same**
+ - Endpoints' URL **are not the same** (se following table)
+ - Change your two API keys to the Production set values
+ - **EVERY REQUEST MADE WITHIN THIS ENVIRONMENT WILL DERIVATE IN A CHARGE [$$$!] TO THE CREDIT CARD** Ultimately, this is what we want, right? Just **be cautious**.
+
+So if you're ok with this, here are the **production endpoints**:
+
+|method|input |response | URL|
+|----|------------------|---------------|-----------------|
+|GET |Serialized String |JSON |**https:**//www.pagofacil.net/ws/public/Wsrrecurrentes/index/format/json?|
+|POST|JSON Object       |JSON |**https:**//www.pagofacil.net/ws/public/Wsjrecurrentes/|
+|GET |Serialized String |XML  |**https:**//www.pagofacil.net/ws/public/Wsrrecurrentes/|
+
+
 
 # Methods
+
+Using this API you have access to the following methods for the recurring charges product. Note that if what you're looking for is not within the API's capabilities, you can find it on the [manager](manager.pagofacil.net).
 
 1. register
 2. cancel
@@ -159,7 +226,7 @@ According to your needs, you may choose from the following tests endpoints' tabl
 4. check one
 5. check all (incluiding optionally all operations by that account)
 
-### NOTES on English documentation
+### NOTES for English documentation
 Most variables are in Spanish, so every table will have an extra column offering English translation of each and every variable but **use spanish named variables when requesting any transaction to PagoFácil API** until further notice. (Version 2.0 contemplates both English and Spanish named variables to co-exist).
 
 #### Date Format
@@ -215,3 +282,24 @@ This method allows to check the status of a recurring charge using its own id.
 
 ## check all
 See reports endpoint.
+
+
+## Common Errors
+(Still in process)
+### Bad API Keys
+```
+{
+	"WebServices_Recurrentes":{
+		"transaccion":{
+			"registrado":"0",
+			"transaccion":"n/a",
+			"autorizacion":"n/a",
+			"texto":"Errores en los datos de entrada Validaciones",
+			"error":{
+				"idUsuario":"idUsuario  a2ad03e28952266fb687c249fa6ab45bbb4d7a1d no encontrado"
+			},
+		}
+	}
+}
+
+```
