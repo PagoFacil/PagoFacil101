@@ -21,17 +21,23 @@ In tests environment all recieved data is only checked to be well formatted and 
 
 According to your needs, you may choose from the following tests endpoints' table,
 
-|ref.|request method|input type|response format|URL|
-|-|--------------|----------|---------------|---|
-|**1**|GET|Serialized String|JSON|**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/index/format/json?|
-|**2**|POST|JSON Object|JSON|**https:**//www.pagofacil.net/st/public/Wsjrecurrentes/|
-|**3**|GET|Serialized String|XML|**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/|
+|ref|request method|input type|response format|URL|
+|-----|----|------------------|---------------|-----------------|
+|**1**|GET |Serialized String |JSON |**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/index/format/json?|
+|**2**|POST|JSON Object       |JSON |**https:**//www.pagofacil.net/st/public/Wsjrecurrentes/|
+|**3**|GET |Serialized String |XML  |**https:**//www.pagofacil.net/st/public/Wsrrecurrentes/|
 
 ### Examples
 
-#### For 1
+#### Request For 2
 
-##### Request
+``````
+curl 
+``````
+
+#### Request For 2
+
+Send POST
 ``````
 {
     "jsonrpc": "2.0", // fixed
@@ -67,8 +73,8 @@ According to your needs, you may choose from the following tests endpoints' tabl
     "id": 1397151272
 }
 ``````
-#### For 2
-##### Request
+#### Request For 3
+
 
 #### Response for 1 and 2
 ```````
@@ -146,7 +152,7 @@ According to your needs, you may choose from the following tests endpoints' tabl
 }
 ```````
 
-#### For 3
+#### Request For 3
 
 ## Production Environment
 
