@@ -296,10 +296,9 @@ See reports endpoint.
 			"autorizacion":"n/a",
 			"texto":"Errores en los datos de entrada Validaciones",
 			"error":{
-				"idUsuario":"idUsuario  a2ad03e28952266fb687c249fa6ab45bbb4d7a1d no encontrado"
+				"idUsuario":"idUsuario XXXXXXXXXXXXXXXXXXXXXXX no encontrado"
 			},
 		}
 	}
 }
-
 ```
