@@ -1,5 +1,5 @@
 PagoFácil Recurring-Charges API Documentation
-==
+=============================================
 
 # Abstract
 
@@ -197,12 +197,12 @@ Send by POST an object like this
 
 ## Production Environment
 
-Production environment is exactly the same as Tests environment.
+Production environment works exactly the same as Tests environment with one *only* diference: all requests for charge a card, are processed thru the card processor, so charges are applied.
 
-Once you have developed and tested your application and it works OK in Tests environment and you're ready to migrate it to production environment, do so, just consider these important points:
+Once you have developed and tested your application and it works OK in Tests environment and you're ready to deploy it to production environment, do so, just **consider these important points**:
 
  - Requests' format **is the same**
- - Endpoints' URL **are not the same** (se following table)
+ - Endpoints' URL **are not the same** (see following table)
  - Change your two API keys to the Production set values
  - **EVERY REQUEST MADE WITHIN THIS ENVIRONMENT WILL DERIVATE IN A CHARGE [$$$!] TO THE CREDIT CARD** Ultimately, this is what we want, right? Just **be cautious**.
 
@@ -213,8 +213,6 @@ So if you're ok with this, here are the **production endpoints**:
 |GET |Serialized String |JSON |**https:**//www.pagofacil.net/ws/public/Wsrrecurrentes/index/format/json?|
 |POST|JSON Object       |JSON |**https:**//www.pagofacil.net/ws/public/Wsjrecurrentes/|
 |GET |Serialized String |XML  |**https:**//www.pagofacil.net/ws/public/Wsrrecurrentes/|
-
-
 
 # Methods
 
@@ -234,6 +232,10 @@ Most variables are in Spanish, so every table will have an extra column offering
 It should also be noted that *date* variables are latin format: **dd-mm-yyyy** (instead of US format like mm-dd-yyyy -**NO**-).
 
 ## register method
+
+This method is meant to register a credit card, cardholder information and a specific amount to be charged every month on a specified day of the month starting and optionally ending in specific dates.
+
+Registering a recurring payment can also include a **one time charge** for the same amount at the moment of registering the payment as a setup fee or first in a series.
 
 ### request variables:
 
@@ -265,8 +267,6 @@ It should also be noted that *date* variables are latin format: **dd-mm-yyyy** (
 |**httpUserAgent**|user_agent|varchar(150)|no|Registrant's HTTP User Agent|
 |**ip**|ip_address|varchar(16)|no|IPV4 dotted-decimal notation, i.e. *192.23.45.210*.|
 |**cargo**|do_charge|int(1)|no|If this variable is set to **1**, the moment the recurring payment is registered will do one charge to the credit card and with the amount specified in the same request, no matter *fechaIniCobro* (charge_start) nor *diaPago* (charge_day) values.|
-
-### response example
 
 ## cancel method
 
