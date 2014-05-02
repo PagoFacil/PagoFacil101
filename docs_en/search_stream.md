@@ -21,10 +21,11 @@ Transaction Search API is meant to give each and every customer a secure, compre
 
 |**name**|**translation***|**type**|**mandatory**|**comments**|
 |-----|-----|:-----|:-----:|:-----|
-|**api_secret**||varchar(65)|yes|API secret|
-|**dateStart**||date|no|Date|
-|**dateEnd**||date|no|date|
-|**status_id**|||||
-|**something**|||||
+|data[**api_secret**]||varchar(65)|yes|API secret|
+|data[**dateStart**]||date|no|Date|
+|data[**dateEnd**]||date|no|date|
+|data[**status_id**]||int||Catalog: 0.- failed 1.- approved|
+|data[**branch_id**]||int||ID from the branch you want to get all transactions from.|
+|p||int|no|If the result is bigger than the page size, you can ask for a specific page.|
 
 
