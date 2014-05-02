@@ -21,5 +21,10 @@ Transaction Search API is meant to give each and every customer a secure, compre
 
 |**name**|**translation***|**type**|**mandatory**|**comments**|
 |-----|-----|:-----|:-----:|:-----|
-|apiSecret||varchar(65)|yes|API secret|
+|**api_secret**||varchar(65)|yes|API secret|
+|**dateStart**||date|no|Date|
+|**dateEnd**||date|no|date|
+|**status_id**|||||
+|**something**|||||
+
 
