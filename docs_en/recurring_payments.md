@@ -1,4 +1,5 @@
-PagoFácil Recurring-Charges API Documentation
+[![PagoFácil](https://www.pagofacil.net/images/logo.png)](https://pagofacil.net)
+PagoFácil Recurring-Charges API Docs
 =============================================
 
 # Abstract
@@ -83,14 +84,14 @@ Some notes on previous example:
 #### Request For POST-JSON
 
 Send by POST an object like this
-```
+``` json
 {
-    "jsonrpc": "2.0", // fixed key-value pair
-    "method": "transaccion", // method to invoke
+    "jsonrpc": "2.0",
+    "method": "transaccion",
     "params": {
         "data": {
-            "nombre": "Mario A",
-            "apellidos": "Martinez Leandro",
+            "nombre": "John",
+            "apellidos": "Doe",
             "numeroTarjeta": "5111111111111111",
             "cvt": "222",
             "cp": "11000",
@@ -100,7 +101,7 @@ Send by POST an object like this
             "idSucursal": "a30bb30df93a9468b878a51e70eac065497bdaab",
             "idUsuario": "a2ad03e28952266fb687c249fa6ab45bbb4d7a1d",
             "IP": "200.1.1.1",
-            "idServicio": 2,  // fixed value for recurring charges
+            "idServicio": 2, 
             "email": "user@gmail.com",
             "telefono": "5555555555",
             "celular": "5555111111",
@@ -115,16 +116,22 @@ Send by POST an object like this
             "httpUserAgent": "Mozilla/5.0 (Windows NT 6.0) Safari/537.36"
         }
     },
-    "id": 1397151272 // send a random number, has to be uniqe
+    "id": 1397151272
 }
 ```
 
+Some notes on previous example:
+- **Object.jsonrpc** is a fixed value set to "2.0"
+- **Object.method** is the method to invoke
+- **Object.data.idServicio** is a fixed value set to "2", which refers to the recurring services
+- **Object.id** is a random number used to id the thread in both layers: merchand and PF
+
 #### JSON Response
-```
+``` json
 {
   "result": {
-    "status": 1, // means OK, charge registered
-    "idRecurrente": "T-RAPFE1S1I368", // important value
+    "status": 1,
+    "idRecurrente": "T-RAPFE1S1I368",
     "texto": "Transaccion registrada con exito",
     "fechaRegistro": "2014/05/01 15:56:26",
     "idCargo": "368",
@@ -133,8 +140,8 @@ Send by POST an object like this
     "TransFin": "15:56:27 pm 01/05/2014",
     "TipoTC": "Master Card",
     "data": {
-      "nombre": "Mario A",
-      "apellidos": "Martinez Leandro",
+      "nombre": "John",
+      "apellidos": "Doe",
       "numeroTarjeta": "(16) **** **** **** 1111",
       "cvt": "(3) ***",
       "cp": "11000",
@@ -161,8 +168,8 @@ Send by POST an object like this
     },
     "dataVal": {
       "idSucursal": "1",
-      "nombre": "Mario A",
-      "apellidos": "Martinez Leandro",
+      "nombre": "John",
+      "apellidos": "Doe",
       "numeroTarjeta": "(16) **** **** **** 1111",
       "cp": "11000",
       "cvt": "(3) ***",
@@ -218,11 +225,11 @@ So if you're ok with this, here are the **production endpoints**:
 
 Using this API you have access to the following methods for the recurring charges product. Note that if what you're looking for is not within the API's capabilities, you can find it on the [manager](manager.pagofacil.net).
 
-1. register
-2. cancel
-3. modify (soon to be released)
-4. check one
-5. check all (incluiding optionally all operations by that account)
+1. **register**
+2. **cancel**
+3. **modify** (soon to be released)
+4. **check one**
+5. **check all** (incluiding optionally all operations by that account)
 
 ### NOTES for English documentation
 Most variables are in Spanish, so every table will have an extra column offering English translation of each and every variable but **use spanish named variables when requesting any transaction to PagoFácil API** until further notice. (Version 2.0 contemplates both English and Spanish named variables to co-exist).
@@ -281,13 +288,13 @@ This method allows to check the status of a recurring charge using its own id.
 |**idSucursal**|branch_id|varchar(20)|yes|Branch ID to which this recurring charge belongs.|
 
 ## check all
-See reports endpoint.
+See *search_stream.md* in this repository.
 
 
 ## Common Errors
 (Still in process)
 ### Bad API Keys
-```
+``` json
 {
 	"WebServices_Recurrentes":{
 		"transaccion":{
