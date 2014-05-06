@@ -276,14 +276,26 @@ Registering a recurring payment can also include a **one time charge** for the s
 |**cargo**|do_charge|int(1)|no|If this variable is set to **1**, the moment the recurring payment is registered will do one charge to the credit card and with the amount specified in the same request, no matter *fechaIniCobro* (charge_start) nor *diaPago* (charge_day) values.|
 
 ## cancel method
+Currently cancel method is in beta stage. This method cancels any registered recurring payment. Before invoking this method please contact soporte[at]pagofacil[dot]net in order to ensure this service is enabled in your account.
+
+### request variables:
+
+|**name**|**translation***|**type**|**mandatory**|**comments**|
+|-----|-----|:-----|:-----:|:-----|
+|**idRecurrente**|recurring_charge_id|varchar(50)|yes|Recurring charge ID provided by either the response object or manager report.|
+|**idUsuario**|user_id|varchar(20)|yes||
+|**api_secret**|api_secret|varchar(20)|yes||
+
+
+
 
 ## check one
 
 This method allows to check the status of a recurring charge using its own id.
 
 ### request variables:
-|name|translation|type|mandatory|comments|
-|----|----|----|----|----|----|
+|**name**|**translation***|**type**|**mandatory**|**comments**|
+|-----|-----|:-----|:-----:|:-----|
 |**idRecurrente**|recurring_charge_id|varchar(50)|yes|Recurring charge ID provided by either the response object or manager report.|
 |**idSucursal**|branch_id|varchar(20)|yes|Branch ID to which this recurring charge belongs.|
 
@@ -292,8 +304,10 @@ See *search_stream.md* in this repository.
 
 
 ## Common Errors
-(Still in process)
+
 ### Bad API Keys
+
+#### Error
 ``` json
 {
 	"WebServices_Recurrentes":{
@@ -309,3 +323,21 @@ See *search_stream.md* in this repository.
 	}
 }
 ```
+#### Reason
+
+API Keys used were not found in **such environment**, there are two main reasons:
+- API Key is misspelled or a typo.
+- You are using test environment API Keys in production environement or vice versa.
+
+### Bad URL's
+
+# About PagoFácil
+
+PagoFácil is a mexican payment gateway.
+
+## Contact us at
+
+- +52 (55) 6386 5009
+- **info[at]pagofacil[dot]net** for commercial inquires.
+- **soporte[at]pagofacil[dot]net** for technical support.
+
