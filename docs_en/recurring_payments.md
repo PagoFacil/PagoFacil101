@@ -14,11 +14,11 @@ Requests can send POST or GET data and depending on which ENDPOINT is being invo
 
 ### API Keys
 
-Before getting to down to the code you should get your API Keys which are two sets: one set will work for Tests Environment, and the other one for Production Environment. This was thought this way in order to avoid any confusion on wich environment is being used. This keys are available on your [account manager](https://manager.pagofacil.net).
+Before getting down to the code you should get your API Keys which are two key sets: one set will work for Tests Environment, and the other one for Production Environment. This was thought this way in order to avoid any confusion on which environment is being used. Keys are available on your [account manager](https://manager.pagofacil.net).
 
 ### API Secret
 
-In order to fulfill request for specific methods API Engine will ask for an *API Secret key**, to get this key ask us at soporte-at-pagofacil-dot-net how to get it.
+In order to fulfill request for specific methods API Engine will ask for an *API Secret key**, to get this key get in contact with us at soporte-at-pagofacil-dot-net how to get it.
 
 Methods which require this API Secret Key are:
 - recurring charge cancelation
@@ -204,9 +204,9 @@ Some notes on previous example:
 
 ## Production Environment
 
-Production environment works exactly the same as Tests environment with one *only* diference: all requests for charge a card, are processed thru the card processor, so charges are applied.
+Production environment works exactly the same as Tests environment with one *only* diference: all requests for charge a card, are processed through the card processor, so **charges are applied**.
 
-Once you have developed and tested your application and it works OK in Tests environment and you're ready to deploy it to production environment, do so, just **consider these important points**:
+Once you have developed and tested your application, everything works OK in Tests environment and you're ready to deploy it to production environment, do so, just **consider these important points**:
 
  - Requests' format **is the same**
  - Endpoints' URL **are not the same** (see following table)
@@ -232,7 +232,7 @@ Using this API you have access to the following methods for the recurring charge
 5. **check all** (incluiding optionally all operations by that account)
 
 ### NOTES for English documentation
-Most variables are in Spanish, so every table will have an extra column offering English translation of each and every variable but **use spanish named variables when requesting any transaction to PagoFácil API** until further notice. (Version 2.0 contemplates both English and Spanish named variables to co-exist).
+Most variables are in Spanish, so every table will have an extra column offering English translation of each and every variable but **use spanish-named variables when requesting any transaction to PagoFácil API** until further notice. (Version 2.0 contemplates both English- and Spanish-named variables to co-exist).
 
 #### Date Format
 
@@ -240,7 +240,7 @@ It should also be noted that *date* variables are latin format: **dd-mm-yyyy** (
 
 ## register method
 
-This method is meant to register a credit card, cardholder information and a specific amount to be charged every month on a specified day of the month starting and optionally ending in specific dates.
+This method is meant to register a credit card, cardholder information and a specific amount to be charged every month on a specified day of the month starting (and optionally ending) in specific dates.
 
 Registering a recurring payment can also include a **one time charge** for the same amount at the moment of registering the payment as a setup fee or first in a series.
 
@@ -285,8 +285,6 @@ Currently cancel method is in beta stage. This method cancels any registered rec
 |**idRecurrente**|recurring_charge_id|varchar(50)|yes|Recurring charge ID provided by either the response object or manager report.|
 |**idUsuario**|user_id|varchar(20)|yes||
 |**api_secret**|api_secret|varchar(20)|yes||
-
-
 
 
 ## check one
