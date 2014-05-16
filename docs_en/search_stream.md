@@ -54,6 +54,24 @@ It should also be noted that *date* variables are latin format: **dd-mm-yyyy** (
 
 #### request
 
+````
+curl "https://www.pagofacil.net/tset/public/reports/Wsrreports/index/format/json/?
+method=rss&
+data%5Bdate%5D=26-03-2012&
+data%5BdateEnd%5D=26-03-2014&
+data%5Bbranch_id%5D=1&
+data%5Btransaction_id%5D=T-RPFE1S1I750&
+data%5Bstatus_id%5D=2&
+p=1&
+data%5Bapi_secret%5D=0617d6721ad648162b3eacf16310d47c6b991effb224ad7862cefebf1b3fdcab"
+````
+
+Some notes on previous example:
+- note **method=rss** as method to invoke
+- particularly opening and closing brackets ("[" and "]") URL Encoded as **%5B** and **%5D** (any semi respected programming language should have an equivalent for URL Encode function)
+- all values for data[foo] should be URL Encoded (see previous point)
+
+
 #### response
 
 `````` json
@@ -103,4 +121,14 @@ It should also be noted that *date* variables are latin format: **dd-mm-yyyy** (
 	}
 }
 ``````
+
+As previous example shows, respnse is formed by two different JSON objects:
+1. *status* object
+2. list of *transaction* type objects
+
+##### *status* object
+Status object shows the status of the transaction incluiding extra variables for pagination. If query results in more than 500 items (maximum per page) it will be paginated and so should be indicated in another request using another parameter using the **p** variable.
+
+##### *transaction* list
+List of all *transaction* objects which meat criteria.
 
