@@ -77,7 +77,7 @@ data%5BhttpUserAgent%5D=Mozilla/5.0%20Windows%20NT%206.0%20Safari/537.36"
 ```
 
 Some notes on previous example:
-- note **method=transaccion" as method to invoke
+- note **method=transaccion** as method to invoke
 - particularly opening and closing brackets ("[" and "]") URL Encoded as **%5B** and **%5D** (any semi respected programming language should have an equivalent for URL Encode function)
 - all values for data[foo] should be URL Encoded (see previous point)
 
