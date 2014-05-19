@@ -55,7 +55,7 @@ It should also be noted that *date* variables are latin format: **dd-mm-yyyy** (
 #### request
 
 ````
-curl "https://www.pagofacil.net/tset/public/reports/Wsrreports/index/format/json/?
+curl "https://www.pagofacil.net/st/public/reports/Wsrreports/index/format/json/?
 method=rss&
 data%5Bdate%5D=26-03-2012&
 data%5BdateEnd%5D=26-03-2014&
@@ -67,6 +67,7 @@ data%5Bapi_secret%5D=0617d6721ad648162b3eacf16310d47c6b991effb224ad7862cefebf1b3
 ````
 
 Some notes on previous example:
+- this request points to Tests environment
 - note **method=rss** as method to invoke
 - particularly opening and closing brackets ("[" and "]") URL Encoded as **%5B** and **%5D** (any semi respected programming language should have an equivalent for URL Encode function)
 - all values for data[foo] should be URL Encoded (see previous point)
