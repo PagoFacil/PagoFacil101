@@ -225,7 +225,7 @@ So if you're ok with this, here are the **production endpoints**:
 
 Using this API you have access to the following methods for the recurring charges product. Note that if what you're looking for is not within the API's capabilities, you can find it on the [manager](manager.pagofacil.net).
 
-1. **register**
+1. **transaction** - register a transaction
 2. **cancel**
 3. **modify** (soon to be released)
 4. **check one**
@@ -238,7 +238,7 @@ Most variables are in Spanish, so every table will have an extra column offering
 
 It should also be noted that *date* variables are latin format: **dd-mm-yyyy** (instead of US format like mm-dd-yyyy -**NO**-).
 
-## register method
+## transaction method
 
 This method is meant to register a credit card, cardholder information and a specific amount to be charged every month on a specified day of the month starting (and optionally ending) in specific dates.
 
@@ -256,22 +256,22 @@ Registering a recurring payment can also include a **one time charge** for the s
 |**mesExpiracion**|exp_month|int(2)|yes|Credit Card expiration month|
 |**anyoExpiracion**|exp_year|int(2)|yes|Credit Card expiration year|
 |**monto**|amount|decimal(7,2)|yes|Amount to be charged|
-|**idSucursal**|branch_id|varchar(20)|yes||
-|**idUsuario**|user_id|varchar(20)|yes||
-|**idServicio**|service_id|integer|yes|This variable denotes which service is consumed. Set idServicio = 1 to use recurring Payments|
+|**idSucursal**|branch_id|varchar(20)|yes|Branch's API Key|
+|**idUsuario**|user_id|varchar(20)|yes|User's API Key|
+|**idServicio**|service_id|integer|yes|This variable denotes which service is consumed. Set idServicio = 1 to use recurring Payments.|
 |**email**|email|varchar(200)|yes|Cardholder's email|
 |**telefono**|phone_number|varchar(10)|yes|Cardholders home phone number|
 |**celular**|cellphone_number|varchar(10)|yes|Cardholder's cell phone number|
 |**calleYNumero**|address_street|varchar(45)|yes|Cardholder's Address Street Name and Number|
-|**colonia**|neighborhood|varchar(30)|yes|Cardholder's Address Neighborhood.|
-|**municipio**|city|varchar(30)|yes|Cardholder's Address City.|
-|**estado**|state|varchar(45)|yes|Cardholder's Address State.|
+|**colonia**|neighborhood|varchar(30)|yes|Cardholder's Address Neighborhood|
+|**municipio**|city|varchar(30)|yes|Cardholder's Address City|
+|**estado**|state|varchar(45)|yes|Cardholder's Address State|
 |**pais**|country|varchar(50)|yes|Cardholder's Country|
-|**idCliente**|client_id|varchar(10)|no||
+|**idCliente**|client_id|varchar(10)|yes|When invoking a recurring payment, PagoFácil needs a contract number agreed between your company(seller) and cardholder (buyer). This is in order to ease clarification of charges (only if needed).|
 |**diaPago**|charge_day|int(2)|yes|Day of the month when the recurring charge will be applied. If it is set to 29, 30 or 31 and the applying month doesn't have that day, it will be applied the last day of such monht.|
 |**fechaIniCobro**|charge_start|date|yes|Start date for recurring charge, should be set to the future. Use **dd-mm-yyyy** format.|
 |**fechaFinCobro**|charge_end|date|no|End date for recurring charge. Note that it is not a mandatory field. Use **dd-mm-yyyy** format.|
-|**httpUserAgent**|user_agent|varchar(150)|no|Registrant's HTTP User Agent|
+|**httpUserAgent**|user_agent|varchar(150)|no|Registrant's HTTP User Agent.|
 |**ip**|ip_address|varchar(16)|no|IPV4 dotted-decimal notation, i.e. *192.23.45.210*.|
 |**cargo**|do_charge|int(1)|no|If this variable is set to **1**, the moment the recurring payment is registered will do one charge to the credit card and with the amount specified in the same request, no matter *fechaIniCobro* (charge_start) nor *diaPago* (charge_day) values.|
 
