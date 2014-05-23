@@ -272,7 +272,7 @@ Registering a recurring payment can also include a **one time charge** for the s
 |**fechaIniCobro**|charge_start|date|yes|Start date for recurring charge, should be set to the future. Use **dd-mm-yyyy** format.|
 |**fechaFinCobro**|charge_end|date|no|End date for recurring charge. Note that it is not a mandatory field. Use **dd-mm-yyyy** format.|
 |**httpUserAgent**|user_agent|varchar(150)|no|Registrant's HTTP User Agent.|
-|**ip**|ip_address|varchar(16)|no|IPV4 dotted-decimal notation, i.e. *192.23.45.210*.|
+|**IP**|ip_address|varchar(16)|no|IPV4 dotted-decimal notation, i.e. *192.23.45.210*. Capitalized. If not sent, we'll use request's IP.|
 |**cargo**|do_charge|int(1)|no|If this variable is set to **1**, the moment the recurring payment is registered will do one charge to the credit card and with the amount specified in the same request, no matter *fechaIniCobro* (charge_start) nor *diaPago* (charge_day) values.|
 
 ## cancel method
