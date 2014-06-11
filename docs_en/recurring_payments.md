@@ -294,8 +294,38 @@ Currently cancel method is in beta stage. This method cancels any registered rec
 |**name**|**translation***|**type**|**mandatory**|**comments**|
 |-----|-----|:-----|:-----:|:-----|
 |**idRecurrente**|recurring_charge_id|varchar(50)|yes|Recurring charge ID provided by either the response object or manager report.|
-|**apiSecret**|api_secret|varchar(20)|yes||
+|**apiSecret**|api_secret|varchar(20)|yes|See **API Secret** section|
 |**idServicio**|service_id|int|yes|Set this value to 3, since you're using API|
+
+### response example 
+
+````json
+{
+	"WebServices_Recurrentes":{
+		"cancel":{
+			"status":"ok",
+			"texto":"Pago recurrente modificado",
+			"exito":"1",
+			"TransIni":"11:44:47 am 11\/06\/2014",
+			"TransFin":"11:44:47 am 11\/06\/2014",
+			"data":{
+				"idServicio":"3",
+				"apiSecret":"0617d6721ad648162b3eacf16310d47c6b991effb224ad7862cefebf1b3fdcab",
+				"noTransaccion":"T-RAPFE1S1I5",
+				"status":"0"
+			},
+			"dataVal":{
+				"idServicio":"3",
+				"status":"0",
+				"noTransaccion":"T-RAPFE1S1I5",
+				"apiSecret":"0617d6721ad648162b3eacf16310d47c6b991effb224ad7862cefebf1b3fdcab",
+				"idEmpresa":"1",
+				"idCargos":"5"
+			}
+		}
+	}
+}
+`````
 
 
 ## check one
