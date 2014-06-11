@@ -102,7 +102,7 @@ Send by POST an object like this
             "idSucursal": "a30bb30df93a9468b878a51e70eac065497bdaab",
             "idUsuario": "a2ad03e28952266fb687c249fa6ab45bbb4d7a1d",
             "IP": "200.1.1.1",
-            "idServicio": 2,  // fixed value for recurring charges
+            "idServicio": 2,
             "email": "user@gmail.com",
             "telefono": "5555555555",
             "celular": "5555111111",
@@ -203,6 +203,15 @@ Some notes on previous example:
   "jsonrpc": "2.0"
 }
 ```
+Some notes on previous example:
+- **Object.result.status** equals 1 means registration was **OK**
+- **Object.result.idRecurrente** is a value you may want (actually have to) store; this 
+value is the key for operate afterwards on a recurring payment.
+- **Object.data** returns the same data you sent to the service; this is in order to
+help you validate your data and metadata is OK.
+- **Object.id** is a random number used to id the thread in both layers: merchand and PF
+
+
 
 ## Production Environment
 
@@ -228,7 +237,7 @@ So if you're ok with this, here are the **production endpoints**:
 Using this API you have access to the following methods for the recurring charges product. Note that if what you're looking for is not within the API's capabilities, you can find it on the [manager](manager.pagofacil.net).
 
 1. **transaction** - register a transaction
-2. **cancel**
+2. **cancel** - unregister a transaction
 3. **modify** (soon to be released)
 4. **check one**
 5. **check all** (incluiding optionally all operations by that account)
@@ -285,8 +294,8 @@ Currently cancel method is in beta stage. This method cancels any registered rec
 |**name**|**translation***|**type**|**mandatory**|**comments**|
 |-----|-----|:-----|:-----:|:-----|
 |**idRecurrente**|recurring_charge_id|varchar(50)|yes|Recurring charge ID provided by either the response object or manager report.|
-|**idUsuario**|user_id|varchar(20)|yes||
-|**api_secret**|api_secret|varchar(20)|yes||
+|**apiSecret**|api_secret|varchar(20)|yes||
+|**idServicio**|service_id|int|yes|Set this value to 3, since you're using API|
 
 
 ## check one
@@ -332,6 +341,12 @@ API Keys used were not found in **such environment**, there are two main reasons
 - You are using test environment API Keys in production environement or vice versa.
 
 ### Bad URL's
+
+Double check that your method and desired environment corresponds the URL you're using.
+
+## Errors Catalog
+
+To-Do
 
 # About PagoFácil
 
